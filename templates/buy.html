@@ -5,7 +5,7 @@
 {% block content %}
 
 <!-- PAGE HEADER -->
-<section class="relative bg-[#1A1A1A] overflow-hidden py-24 px-6">
+<section class="relative bg-[#1A1A1A] overflow-hidden py-16 md:py-24 px-5">
     <div class="absolute inset-0 bg-cover bg-center opacity-30"
         style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920');">
     </div>
@@ -15,23 +15,23 @@
         <span class="text-[#D4AF37] text-xs font-bold tracking-[0.3em] uppercase block mb-4">
             Our Collection
         </span>
-        <h1 class="text-white font-serif text-4xl md:text-5xl font-light tracking-tight leading-tight">
+        <h1 class="text-white font-serif text-3xl md:text-5xl font-light tracking-tight leading-tight">
             Buy a <em class="font-normal italic">Classic</em>
         </h1>
     </div>
 </section>
 
 <!-- COLLECTION SECTION -->
-<section class="bg-white py-20 px-6 md:px-12 lg:px-24">
+<section class="bg-white py-12 md:py-20 px-5 md:px-12 lg:px-24">
     <div class="max-w-7xl mx-auto">
 
         <!-- Section Header -->
-        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 md:gap-6 mb-8 md:mb-10">
             <div class="text-left">
                 <span class="text-[#D4AF37] text-xs font-bold tracking-[0.3em] uppercase block mb-2" id="result-count">
                     {{ vehicle_details|length }} Vehicles Available
                 </span>
-                <h2 class="font-serif text-4xl font-light text-[#2D2D2D]">
+                <h2 class="font-serif text-3xl md:text-4xl font-light text-[#2D2D2D]">
                     The Full <em class="font-normal italic">Collection</em>
                 </h2>
                 <div class="w-12 h-px bg-[#D4AF37] mt-3"></div>
@@ -41,8 +41,8 @@
                 <select id="sort-by"
                     class="border border-gray-300 bg-white px-4 py-2.5 text-sm text-[#2D2D2D] outline-none focus:border-[#D4AF37] transition-colors appearance-none cursor-pointer pr-8">
                     <option value="default">Default</option>
-                    <option value="name-asc">Name A–Z</option>
-                    <option value="name-desc">Name Z–A</option>
+                    <option value="name-asc">Name A-Z</option>
+                    <option value="name-desc">Name Z-A</option>
                     <option value="price-asc">Price: Low to High</option>
                     <option value="price-desc">Price: High to Low</option>
                     <option value="year-asc">Year: Oldest First</option>
@@ -51,13 +51,17 @@
             </div>
         </div>
 
-        <div class="flex flex-col lg:flex-row gap-8">
+        <div class="flex flex-col lg:flex-row gap-6 lg:gap-8">
 
             <!-- LEFT: Filter Sidebar -->
             <div class="lg:w-64 flex-shrink-0">
-                <div class="bg-[#F9F9F9] border border-[#D4AF37] rounded-xl p-6 lg:sticky lg:top-8">
-                    <h3 class="font-serif text-lg font-light text-[#2D2D2D] mb-5">Filters</h3>
-                    <div class="space-y-6">
+                <div class="bg-[#F9F9F9] border border-[#D4AF37] rounded-xl p-6 lg:sticky lg:top-20">
+                    <button id="filter-toggle" type="button" class="lg:hidden w-full flex items-center justify-between">
+                        <h3 class="font-serif text-lg font-light text-[#2D2D2D]">Filters</h3>
+                        <svg id="filter-chevron" class="w-5 h-5 text-[#D4AF37] transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <h3 class="hidden lg:block font-serif text-lg font-light text-[#2D2D2D] mb-5">Filters</h3>
+                    <div id="filter-content" class="hidden lg:block space-y-6 mt-5 lg:mt-0">
 
                         <!-- Make Dropdown -->
                         <div>
@@ -137,7 +141,7 @@
 
             <!-- RIGHT: Vehicle Cards -->
             <div class="flex-1">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="vehicle-grid">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6" id="vehicle-grid">
                     {% for vehicle in vehicle_details %}
                     <a href="{{ url_for('details', vehicle_id=vehicle.id) }}" data-make="{{ vehicle.make }}" data-model="{{ vehicle.model }}" data-year="{{ vehicle.year }}" data-price="{{ vehicle.price_numeric }}" data-name="{{ vehicle.name }}" data-order="{{ loop.index0 }}"
                         class="vehicle-card border border-[#D4AF37] rounded-xl overflow-hidden flex flex-col hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 no-underline">
@@ -177,7 +181,7 @@
 </section>
 
 <!-- CTA / CONSIGN SECTION -->
-<section class="bg-[#F9F9F9] py-20 px-6 text-center">
+<section class="bg-[#F9F9F9] py-12 md:py-20 px-5 text-center">
     <div class="max-w-2xl mx-auto">
         <span class="text-[#D4AF37] text-xs font-bold tracking-[0.3em] uppercase block mb-3">
             Don't See What You're Looking For?
@@ -218,6 +222,18 @@
 
 <script>
     (function () {
+        const filterToggle = document.getElementById('filter-toggle');
+        const filterContent = document.getElementById('filter-content');
+        const filterChevron = document.getElementById('filter-chevron');
+
+        if (filterToggle) {
+            filterToggle.addEventListener('click', () => {
+                filterContent.classList.toggle('hidden');
+                filterContent.classList.toggle('lg:block');
+                filterChevron.style.transform = filterContent.classList.contains('hidden') ? '' : 'rotate(180deg)';
+            });
+        }
+
         const grid = document.getElementById('vehicle-grid');
         const emptyState = document.getElementById('empty-state');
         const resultCount = document.getElementById('result-count');

@@ -5,7 +5,7 @@
 {% block content %}
 
 <!-- 2. HERO BANNER SECTION -->
-<section class="relative h-[85vh] flex items-center justify-center bg-[#1A1A1A] overflow-hidden">
+<section class="relative h-[70vh] md:h-[85vh] flex items-center justify-center bg-[#1A1A1A] overflow-hidden">
     <!-- Background Video/Image Overlay -->
     <div class="absolute inset-0 bg-cover bg-center opacity-40 dynamic-hero-bg"
         style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920');">
@@ -17,8 +17,8 @@
         <span class="text-[#D4AF37] text-xs font-bold tracking-[0.3em] uppercase block mb-4">
             Timeless Automotive Masterpieces
         </span>
-        <h1 class="text-white font-serif text-4xl md:text-6xl font-light tracking-tight leading-tight mb-8">
-            The Ultimate Destination for <br>
+        <h1 class="text-white font-serif text-3xl md:text-6xl font-light tracking-tight leading-tight mb-6 md:mb-8">
+            The Ultimate Destination for <br class="hidden sm:block">
             <span class="italic font-normal">Classic Car Collectors</span> in Singapore.
         </h1>
 
@@ -37,11 +37,11 @@
 </section>
 
 <!-- VALUE PROPOSITIONS SECTION -->
-<section class="bg-[#F9F9F9] py-20 px-6 md:px-12 lg:px-24">
+<section class="bg-[#F9F9F9] py-12 md:py-20 px-5 md:px-12 lg:px-24">
     <div class="max-w-7xl mx-auto">
 
         <!-- 3-Card Row Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8">
 
             <!-- LEFT CARD: Largest Collection in Singapore -->
             <div
@@ -131,11 +131,11 @@
 </section>
 
 <!-- 4. FEATURED VEHICLES SECTION -->
-<section class="bg-white py-20 px-6 md:px-12 lg:px-24">
+<section class="bg-white py-12 md:py-20 px-5 md:px-12 lg:px-24">
     <div class="max-w-7xl mx-auto">
 
         <!-- Section Header and CTA -->
-        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-14">
+        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-6 mb-8 md:mb-14">
             <div class="text-left">
                 <span class="text-[#D4AF37] text-xs font-bold tracking-[0.3em] uppercase block mb-2">
                     Curated Classics
@@ -155,7 +155,7 @@
         </div>
 
         <!-- Vehicle Cards Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
             {% for vehicle in vehicle_details %}
             <a href="{{ url_for('details', vehicle_id=vehicle.id) }}"
                 class="border border-[#D4AF37] rounded-xl overflow-hidden flex flex-col hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 no-underline">
@@ -186,17 +186,17 @@
 </section>
 
 <!-- 5. ENQUIRY SECTION -->
-<section class="bg-[#F9F9F9] py-20 px-6 md:px-12">
+<section class="bg-[#F9F9F9] py-12 md:py-20 px-5 md:px-12">
     <div class="max-w-6xl mx-auto">
 
-        <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-12 lg:gap-16 items-center">
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-8 lg:gap-16 items-center">
 
             <!-- LEFT: Text Content -->
             <div>
                 <span class="text-[#D4AF37] text-xs font-bold tracking-[0.3em] uppercase">
                     Get In Touch
                 </span>
-                <h2 class="font-serif text-4xl font-light text-[#2D2D2D] mt-3 leading-tight">
+                <h2 class="font-serif text-3xl md:text-4xl font-light text-[#2D2D2D] mt-3 leading-tight">
                     Send Us An <em class="font-normal italic">Enquiry</em>
                 </h2>
                 <div class="w-12 h-px bg-[#D4AF37] mt-4"></div>
