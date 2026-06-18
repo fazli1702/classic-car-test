@@ -6,18 +6,22 @@ from pathlib import Path
 
 from flask import Flask, render_template, abort
 
-app = Flask(__name__)
+BASE_DIR = Path(__file__).resolve().parent
+
+app = Flask(__name__,
+            template_folder=str(BASE_DIR / 'templates'),
+            static_folder=str(BASE_DIR / 'static'))
 
 
-with open('data.json', 'r', encoding='utf-8') as file:
+with open(BASE_DIR / 'data.json', 'r', encoding='utf-8') as file:
     data = json.load(file)
 
-with open('toy_car_details.json', 'r', encoding='utf-8') as file:
+with open(BASE_DIR / 'toy_car_details.json', 'r', encoding='utf-8') as file:
     TOY_CAR_DETAILS = json.load(file)
 
 for i, vehicle in enumerate(data):
     folder = str(i + 1)
-    img_dir = os.path.join(app.static_folder, 'images', folder)
+    img_dir = BASE_DIR / 'static' / 'images' / folder
     files = sorted(
         [f for f in os.listdir(img_dir) if f.endswith('.jpg')],
         key=lambda f: int(os.path.splitext(f)[0])

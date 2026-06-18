@@ -15,7 +15,7 @@
             class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 px-8 py-4 flex items-center justify-between">
 
             <!-- UPDATED CENTERED & SCALED LOGO -->
-            <a href="/" class="flex flex-col items-center justify-center group mx-auto lg:mx-0">
+            <a href="{{ url_for('home') }}" class="flex flex-col items-center justify-center group mx-auto lg:mx-0">
                 <!-- Main Title -->
                 <span
                     class="text-xl font-serif font-light tracking-widest text-[#2D2D2D] leading-none uppercase transition-colors group-hover:text-black">
@@ -30,13 +30,13 @@
 
             <!-- Nav Links -->
             <div class="hidden lg:flex space-x-8 text-xs font-semibold tracking-wider uppercase">
-                <a href="/" class="hover:text-[#D4AF37] transition-colors">Home</a>
-                <a href="/buy" class="hover:text-[#D4AF37] transition-colors">Buy a Car</a>
-                <a href="/sell" class="hover:text-[#D4AF37] transition-colors">Sell a Car</a>
-                <a href="/services" class="hover:text-[#D4AF37] transition-colors">Import/Finance</a>
-                <a href="/toys" class="hover:text-[#D4AF37] transition-colors">TT Italia Kids Car</a>
-                <a href="/about" class="hover:text-[#D4AF37] transition-colors">About Us</a>
-                <a href="/contact" class="hover:text-[#D4AF37] transition-colors">Contact Us</a>
+                <a href="{{ url_for('home') }}" class="hover:text-[#D4AF37] transition-colors">Home</a>
+                <a href="{{ url_for('buy') }}" class="hover:text-[#D4AF37] transition-colors">Buy a Car</a>
+                <a href="{{ url_for('sell') }}" class="hover:text-[#D4AF37] transition-colors">Sell a Car</a>
+                <a href="{{ url_for('services') }}" class="hover:text-[#D4AF37] transition-colors">Import/Finance</a>
+                <a href="{{ url_for('toys') }}" class="hover:text-[#D4AF37] transition-colors">TT Italia Kids Car</a>
+                <a href="{{ url_for('about') }}" class="hover:text-[#D4AF37] transition-colors">About Us</a>
+                <a href="{{ url_for('contact') }}" class="hover:text-[#D4AF37] transition-colors">Contact Us</a>
             </div>
 
             <!-- Right CTA -->
@@ -57,7 +57,7 @@
 
                     <!-- Brand Column (Updated to match Navbar Logo style but for Dark Theme) -->
                     <div class="col-span-2 md:col-span-1 flex flex-col items-start justify-start">
-                        <a href="/" class="flex flex-col items-start group mb-4">
+                        <a href="{{ url_for('home') }}" class="flex flex-col items-start group mb-4">
                             <!-- Main Title -->
                             <span
                                 class="text-xl font-serif font-light tracking-widest text-white leading-none uppercase transition-colors group-hover:text-gray-200">
@@ -79,13 +79,13 @@
                         <p class="text-[11px] font-bold tracking-widest uppercase text-white mb-4">
                             Explore
                         </p>
-                        <a href="/"
+                        <a href="{{ url_for('home') }}"
                             class="block text-xs text-gray-400 hover:text-[#D4AF37] transition-colors mb-3">Home</a>
-                        <a href="/buy" class="block text-xs text-gray-400 hover:text-[#D4AF37] transition-colors mb-3">Buy
+                        <a href="{{ url_for('buy') }}" class="block text-xs text-gray-400 hover:text-[#D4AF37] transition-colors mb-3">Buy
                             a Car</a>
-                        <a href="/sell" class="block text-xs text-gray-400 hover:text-[#D4AF37] transition-colors mb-3">Sell
+                        <a href="{{ url_for('sell') }}" class="block text-xs text-gray-400 hover:text-[#D4AF37] transition-colors mb-3">Sell
                             a Car</a>
-                        <a href="/services"
+                        <a href="{{ url_for('services') }}"
                             class="block text-xs text-gray-400 hover:text-[#D4AF37] transition-colors mb-3">Import/Finance</a>
                     </div>
 
@@ -94,11 +94,11 @@
                         <p class="text-[11px] font-bold tracking-widest uppercase text-white mb-4">
                             Company
                         </p>
-                        <a href="/toys" class="block text-xs text-gray-400 hover:text-[#D4AF37] transition-colors mb-3">TT
+                        <a href="{{ url_for('toys') }}" class="block text-xs text-gray-400 hover:text-[#D4AF37] transition-colors mb-3">TT
                             Italia Kids Car</a>
-                        <a href="/about"
+                        <a href="{{ url_for('about') }}"
                             class="block text-xs text-gray-400 hover:text-[#D4AF37] transition-colors mb-3">About Us</a>
-                        <a href="/contact"
+                        <a href="{{ url_for('contact') }}"
                             class="block text-xs text-gray-400 hover:text-[#D4AF37] transition-colors mb-3">Contact
                             Us</a>
                     </div>

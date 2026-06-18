@@ -24,7 +24,7 @@
 
         <!-- CTAs -->
         <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <a href="/buy"
+            <a href="{{ url_for('buy') }}"
                 class="w-full sm:w-auto bg-[#D4AF37] text-white px-8 py-4 text-xs font-bold tracking-wider uppercase shadow-lg hover:bg-[#B8942F] transition-all duration-300">
                 Explore Collection
             </a>
@@ -64,7 +64,7 @@
                         specimens, and rare historical marques.
                     </p>
                 </div>
-                <a href="/buy"
+                <a href="{{ url_for('buy') }}"
                     class="mt-6 text-xs font-bold tracking-wider text-[#D4AF37] uppercase hover:text-[#B8942F] transition-colors">
                     View Collection &rarr;
                 </a>
@@ -147,7 +147,7 @@
             </div>
 
             <div class="md:ml-auto md:self-start">
-                <a href="/buy"
+                <a href="{{ url_for('buy') }}"
                     class="text-[#D4AF37] text-xs font-bold tracking-wider uppercase transition-colors duration-300 hover:underline underline-offset-4 decoration-2 decoration-[#D4AF37]">
                     View Full Collection →
                 </a>
@@ -177,7 +177,7 @@
                     </p>
                     <div class="mt-auto pt-3 border-t border-[#f0e8cc] flex items-center justify-between">
                         <span class="text-[#D4AF37] text-lg font-semibold">{{ vehicle.price }}</span>
-                        <a href="/details/{{ vehicle.id }}"
+                        <a href="{{ url_for('details', vehicle_id=vehicle.id) }}"
                             class="border border-[#D4AF37] text-[#D4AF37] text-[10px] font-bold tracking-widest uppercase px-4 py-2 hover:bg-[#D4AF37] hover:text-white transition-all duration-300">
                             details →
                         </a>

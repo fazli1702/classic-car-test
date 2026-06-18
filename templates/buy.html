@@ -155,7 +155,7 @@
                             </p>
                             <div class="mt-auto pt-3 border-t border-[#f0e8cc] flex items-center justify-between">
                                 <span class="text-[#D4AF37] text-lg font-semibold">{{ vehicle.price }}</span>
-                                <a href="/details/{{ vehicle.id }}"
+                                <a href="{{ url_for('details', vehicle_id=vehicle.id) }}"
                                     class="border border-[#D4AF37] text-[#D4AF37] text-[10px] font-bold tracking-widest uppercase px-4 py-2 hover:bg-[#D4AF37] hover:text-white transition-all duration-300">
                                     details →
                                 </a>
@@ -185,7 +185,7 @@
         <h2 class="font-serif text-3xl font-light text-[#2D2D2D] mb-6">
             Let Us Source It <em class="font-normal italic">For You</em>
         </h2>
-        <a href="/contact"
+        <a href="{{ url_for('contact') }}"
             class="inline-block bg-[#D4AF37] text-white px-9 py-4 text-xs font-bold tracking-wider uppercase hover:bg-[#B8942F] transition-all duration-300">
             Send An Enquiry →
         </a>
