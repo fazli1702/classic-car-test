@@ -157,33 +157,29 @@
         <!-- Vehicle Cards Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {% for vehicle in vehicle_details %}
-            <div
-                class="border border-[#D4AF37] rounded-xl overflow-hidden flex flex-col hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300">
+            <a href="{{ url_for('details', vehicle_id=vehicle.id) }}"
+                class="border border-[#D4AF37] rounded-xl overflow-hidden flex flex-col hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 no-underline">
                 <div class="relative">
                     <img src="{{ vehicle.src }}"
                         alt="{{ vehicle.year }} {{ vehicle.make }} {{ vehicle.model }}" class="w-full h-52 object-cover" />
-                    <span
-                        class="absolute top-3 left-3 bg-[#D4AF37] text-white text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded">
-                        For Sale
-                    </span>
                 </div>
                 <div class="p-5 flex flex-col gap-2 flex-1">
                     <div>
                         <p class="text-[10px] tracking-widest text-gray-400 uppercase mb-1">{{ vehicle.year }} · {{ vehicle.make }}</p>
-                        <h3 class="font-serif text-lg font-normal text-[#2D2D2D]">{{ vehicle.model }}</h3>
+                        <h3 class="font-serif text-lg font-normal text-[#2D2D2D]">{{ vehicle.name }}</h3>
                     </div>
                     <p class="text-xs text-gray-400 leading-relaxed">
                         {{ vehicle.licensing_scheme }} · {{ vehicle.transmission }} · {{ vehicle.body_type }}
                     </p>
                     <div class="mt-auto pt-3 border-t border-[#f0e8cc] flex items-center justify-between">
                         <span class="text-[#D4AF37] text-lg font-semibold">{{ vehicle.price }}</span>
-                        <a href="{{ url_for('details', vehicle_id=vehicle.id) }}"
+                        <span
                             class="border border-[#D4AF37] text-[#D4AF37] text-[10px] font-bold tracking-widest uppercase px-4 py-2 hover:bg-[#D4AF37] hover:text-white transition-all duration-300">
                             details →
-                        </a>
+                        </span>
                     </div>
                 </div>
-            </div>
+            </a>
             {% endfor %}
         </div>
     </div>
