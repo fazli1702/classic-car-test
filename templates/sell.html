@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+
+{% block title %}Sell Your Car{% endblock %}
+
+{% block content %}
+
+<!-- PAGE HEADER -->
+<section class="relative bg-[#1A1A1A] overflow-hidden py-24 px-6">
+    <div class="absolute inset-0 bg-cover bg-center opacity-30"
+        style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920');">
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent"></div>
+
+    <div class="relative z-10 text-center max-w-3xl mx-auto">
+        <span class="text-[#D4AF37] text-xs font-bold tracking-[0.3em] uppercase block mb-4">
+            List With Us
+        </span>
+        <h1 class="text-white font-serif text-4xl md:text-5xl font-light tracking-tight leading-tight">
+            Sell Your <em class="font-normal italic">Classic</em>
+        </h1>
+    </div>
+</section>
+
+<!-- SELL FORM SECTION -->
+<section class="bg-[#F9F9F9] py-20 px-6 md:px-12">
+    <div class="max-w-6xl mx-auto">
+
+        <div class="max-w-2xl mx-auto">
+
+            <!-- Text Content -->
+            <div class="text-center mb-12">
+                <span class="text-[#D4AF37] text-xs font-bold tracking-[0.3em] uppercase">
+                    Consign With Us
+                </span>
+                <h2 class="font-serif text-4xl font-light text-[#2D2D2D] mt-3 leading-tight">
+                    Reach Serious <em class="font-normal italic">Collectors</em>
+                </h2>
+                <div class="w-12 h-px bg-[#D4AF37] mt-4 mx-auto"></div>
+                <p class="text-sm text-gray-500 mt-5 leading-relaxed max-w-lg mx-auto">
+                    Looking to sell your classic car? Fill in the details and our team will
+                    be in touch to discuss listing your vehicle with Singapore's premier classic car dealership.
+                </p>
+            </div>
+
+            <!-- Form Card -->
+            <form class="bg-white border border-[#D4AF37] rounded-xl p-8 lg:p-10">
+                <div class="space-y-5">
+
+                    <!-- Seller Information -->
+                    <p class="text-[#D4AF37] text-xs font-bold tracking-[0.2em] uppercase">Seller Information</p>
+
+                    <div>
+                        <label class="text-[10px] font-bold tracking-widest uppercase text-gray-500 block mb-2">
+                            Name
+                        </label>
+                        <input type="text" placeholder="John Tan"
+                            class="w-full border border-gray-300 bg-white px-4 py-3 text-sm text-[#2D2D2D] outline-none focus:border-[#D4AF37] transition-colors" />
+                    </div>
+
+                    <div>
+                        <label class="text-[10px] font-bold tracking-widest uppercase text-gray-500 block mb-2">
+                            Email
+                        </label>
+                        <input type="email" placeholder="john@example.com"
+                            class="w-full border border-gray-300 bg-white px-4 py-3 text-sm text-[#2D2D2D] outline-none focus:border-[#D4AF37] transition-colors" />
+                    </div>
+
+                    <div>
+                        <label class="text-[10px] font-bold tracking-widest uppercase text-gray-500 block mb-2">
+                            Phone Number
+                        </label>
+                        <input type="tel" placeholder="+65 9123 4567"
+                            class="w-full border border-gray-300 bg-white px-4 py-3 text-sm text-[#2D2D2D] outline-none focus:border-[#D4AF37] transition-colors" />
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="border-t border-gray-100 pt-5">
+                        <p class="text-[#D4AF37] text-xs font-bold tracking-[0.2em] uppercase">Vehicle Information</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div>
+                            <label class="text-[10px] font-bold tracking-widest uppercase text-gray-500 block mb-2">
+                                Make
+                            </label>
+                            <input type="text" placeholder="e.g. Jaguar"
+                                class="w-full border border-gray-300 bg-white px-4 py-3 text-sm text-[#2D2D2D] outline-none focus:border-[#D4AF37] transition-colors" />
+                        </div>
+
+                        <div>
+                            <label class="text-[10px] font-bold tracking-widest uppercase text-gray-500 block mb-2">
+                                Model
+                            </label>
+                            <input type="text" placeholder="e.g. E-Type"
+                                class="w-full border border-gray-300 bg-white px-4 py-3 text-sm text-[#2D2D2D] outline-none focus:border-[#D4AF37] transition-colors" />
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div>
+                            <label class="text-[10px] font-bold tracking-widest uppercase text-gray-500 block mb-2">
+                                Year of Manufacture
+                            </label>
+                            <input type="number" placeholder="e.g. 1965" min="1900" max="2026"
+                                class="w-full border border-gray-300 bg-white px-4 py-3 text-sm text-[#2D2D2D] outline-none focus:border-[#D4AF37] transition-colors" />
+                        </div>
+
+                        <div>
+                            <label class="text-[10px] font-bold tracking-widest uppercase text-gray-500 block mb-2">
+                                Location
+                            </label>
+                            <select
+                                class="w-full border border-gray-300 bg-white px-4 py-3 text-sm text-[#2D2D2D] outline-none focus:border-[#D4AF37] transition-colors appearance-none cursor-pointer">
+                                <option value="" disabled selected>Select location</option>
+                                <option value="singapore">Singapore</option>
+                                <option value="malaysia">Malaysia</option>
+                                <option value="overseas">Overseas</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="text-[10px] font-bold tracking-widest uppercase text-gray-500 block mb-2">
+                            Car Images
+                        </label>
+                        <label class="flex flex-col items-center justify-center w-full h-36 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-[#D4AF37] transition-colors bg-[#F9F9F9]">
+                            <svg class="w-8 h-8 text-gray-400 mb-2" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 16v-8m0 0l-3 3m3-3l3 3M3 16.5V18a2.25 2.25 0 002.25 2.25h13.5A2.25 2.25 0 0021 18v-1.5M6.75 12l-1.06-1.06a1.5 1.5 0 010-2.12L12 2.56l6.31 6.26a1.5 1.5 0 010 2.12L17.25 12" />
+                            </svg>
+                            <p class="text-xs text-gray-500">Click to upload or drag and drop</p>
+                            <p class="text-[10px] text-gray-400 mt-1">JPG, PNG (max 10 files)</p>
+                            <input id="car-images" type="file" accept="image/jpeg,image/png" multiple class="hidden" />
+                        </label>
+                        <div id="image-preview" class="flex gap-3 mt-3 overflow-x-auto pb-1"></div>
+                    </div>
+
+                    <div>
+                        <label class="text-[10px] font-bold tracking-widest uppercase text-gray-500 block mb-2">
+                            Additional Details
+                        </label>
+                        <textarea rows="4" placeholder="Condition, mileage, modifications, restoration history, asking price..."
+                            class="w-full border border-gray-300 bg-white px-4 py-3 text-sm text-[#2D2D2D] outline-none focus:border-[#D4AF37] transition-colors resize-y"></textarea>
+                    </div>
+
+                    <div class="flex justify-end">
+                        <button type="submit"
+                            class="bg-[#D4AF37] text-white px-9 py-4 text-xs font-bold tracking-wider uppercase hover:bg-[#B8942F] transition-all duration-300">
+                            Submit Listing →
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+</section>
+
+<script>
+    (function () {
+        const input = document.getElementById('car-images');
+        const preview = document.getElementById('image-preview');
+
+        input.addEventListener('change', () => {
+            preview.innerHTML = '';
+            const files = Array.from(input.files).slice(0, 10);
+            files.forEach((file, i) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'relative flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border border-gray-200';
+                    wrapper.innerHTML =
+                        '<img src="' + e.target.result + '" class="w-full h-full object-cover" />' +
+                        '<button type="button" data-index="' + i + '" class="remove-img absolute top-0.5 right-0.5 w-5 h-5 bg-black/60 hover:bg-black/80 text-white rounded-full flex items-center justify-center text-xs leading-none">&times;</button>';
+                    preview.appendChild(wrapper);
+                };
+                reader.readAsDataURL(file);
+            });
+        });
+
+        preview.addEventListener('click', (e) => {
+            const btn = e.target.closest('.remove-img');
+            if (!btn) return;
+            btn.parentElement.remove();
+        });
+    })();
+</script>
+
+{% endblock %}

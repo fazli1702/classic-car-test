@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "name": "Ferrari F430",
+        "detail": "Electric 6V"
+    },
+    {
+        "id": 2,
+        "name": "Ferrari Enzo",
+        "detail": "SOLD OUT"
+    },
+    {
+        "id": 3,
+        "name": "Ferrari F1 Car",
+        "detail": "Pedal Version"
+    },
+    {
+        "id": 4,
+        "name": "Ferrari 250 GTO",
+        "detail": "Electric 6V"
+    },
+    {
+        "id": 5,
+        "name": "Ferrari California",
+        "detail": "Pedal Version and Electric 12V"
+    },
+    {
+        "id": 6,
+        "name": "Ferrari 550 Maranello",
+        "detail": "SOLD OUT"
+    },
+    {
+        "id": 7,
+        "name": "Porsche 911 Carrera RS",
+        "detail": "SOLD OUT"
+    },
+    {
+        "id": 8,
+        "name": "Porsche Boxter S",
+        "detail": "Pedal Version and Electric 6V"
+    },
+    {
+        "id": 9,
+        "name": "Porsche Cayenne",
+        "detail": "Electric 6V"
+    },
+    {
+        "id": 10,
+        "name": "Mercedes 300 SL",
+        "detail": "SOLD OUT"
+    },
+    {
+        "id": 11,
+        "name": "Mercedes SLS AMG",
+        "detail": "SOLD OUT"
+    },
+    {
+        "id": 12,
+        "name": "Mercedes SLS AMG",
+        "detail": "SOLD OUT"
+    },
+    {
+        "id": 13,
+        "name": "Citroen C3 Pluriel",
+        "detail": "Pedal Version"
+    },
+    {
+        "id": 14,
+        "name": "Citroen DS 19",
+        "detail": "Electric 6V"
+    }
+]

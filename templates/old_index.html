@@ -1,0 +1,478 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+</head>
+<!-- Main Wrapper with Global Font (e.g., Playfair Display & Inter) -->
+
+<body>
+    <div class="bg-white text-[#2D2D2D] font-sans antialiased">
+
+        <!-- 1. NAVIGATION BAR -->
+        <nav
+            class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 px-8 py-4 flex items-center justify-between">
+
+            <!-- UPDATED CENTERED & SCALED LOGO -->
+            <a href="#" class="flex flex-col items-center justify-center group mx-auto lg:mx-0">
+                <!-- Main Title -->
+                <span
+                    class="text-xl font-serif font-light tracking-widest text-[#2D2D2D] leading-none uppercase transition-colors group-hover:text-black">
+                    Classic Car
+                </span>
+                <!-- Subtitle / Location (Centered, larger font size, high letter spacing) -->
+                <span
+                    class="text-[11px] font-sans font-bold tracking-[0.4em] text-[#D4AF37] uppercase leading-none mt-2 mr-[-0.4em]">
+                    Singapore
+                </span>
+            </a>
+
+            <!-- Nav Links -->
+            <div class="hidden lg:flex space-x-8 text-xs font-semibold tracking-wider uppercase">
+                <a href="#" class="text-[#D4AF37] transition-colors">Home</a>
+                <a href="#" class="hover:text-[#D4AF37] transition-colors">Buy a Car</a>
+                <a href="#" class="hover:text-[#D4AF37] transition-colors">Sell a Car</a>
+                <a href="#" class="hover:text-[#D4AF37] transition-colors">Import/Finance</a>
+                <a href="#" class="hover:text-[#D4AF37] transition-colors">TT Italia Kids Car</a>
+                <a href="#" class="hover:text-[#D4AF37] transition-colors">About Us</a>
+                <a href="#" class="hover:text-[#D4AF37] transition-colors">Contact Us</a>
+            </div>
+
+            <!-- Right CTA -->
+            <a href="#"
+                class="border border-[#D4AF37] text-[#D4AF37] px-5 py-2 text-xs font-semibold tracking-wider uppercase hover:bg-[#D4AF37] hover:text-white transition-all duration-300">
+                Consign With Us
+            </a>
+        </nav>
+
+        <!-- 2. HERO BANNER SECTION -->
+        <section class="relative h-[85vh] flex items-center justify-center bg-[#1A1A1A] overflow-hidden">
+            <!-- Background Video/Image Overlay -->
+            <div class="absolute inset-0 bg-cover bg-center opacity-40 dynamic-hero-bg"
+                style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920');">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent"></div>
+
+            <!-- Hero Content -->
+            <div class="relative z-10 text-center max-w-4xl px-4 mx-auto">
+                <span class="text-[#D4AF37] text-xs font-bold tracking-[0.3em] uppercase block mb-4">
+                    Timeless Automotive Masterpieces
+                </span>
+                <h1 class="text-white font-serif text-4xl md:text-6xl font-light tracking-tight leading-tight mb-8">
+                    The Ultimate Destination for <br>
+                    <span class="italic font-normal">Classic Car Collectors</span> in Singapore.
+                </h1>
+
+                <!-- CTAs -->
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="#"
+                        class="w-full sm:w-auto bg-[#D4AF37] text-white px-8 py-4 text-xs font-bold tracking-wider uppercase shadow-lg hover:bg-[#B8942F] transition-all duration-300">
+                        Explore Collection
+                    </a>
+                    <a href="#"
+                        class="w-full sm:w-auto border border-white text-white px-8 py-4 text-xs font-bold tracking-wider uppercase hover:bg-white hover:text-[#1A1A1A] transition-all duration-300">
+                        List Your Classic
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- VALUE PROPOSITIONS SECTION -->
+        <section class="bg-[#F9F9F9] py-20 px-6 md:px-12 lg:px-24">
+            <div class="max-w-7xl mx-auto">
+
+                <!-- 3-Card Row Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                    <!-- LEFT CARD: Largest Collection in Singapore -->
+                    <div
+                        class="bg-white border border-[#D4AF37] rounded-xl p-8 text-center shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between items-center">
+                        <div class="mb-6">
+                            <!-- Elegant Gold Icon (Simulated Ribbon/Award) -->
+                            <svg class="w-10 h-10 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                                    d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-serif text-xl font-light tracking-wide text-[#2D2D2D] mb-3">
+                                Largest Collection in Singapore
+                            </h3>
+                            <p class="text-xs text-gray-500 leading-relaxed max-w-xs mx-auto">
+                                Unrivaled access to an elite catalog of blue-chip classics, exceptional investment-grade
+                                specimens, and rare historical marques.
+                            </p>
+                        </div>
+                        <a href="#"
+                            class="mt-6 text-xs font-bold tracking-wider text-[#D4AF37] uppercase hover:text-[#B8942F] transition-colors">
+                            View Collection &rarr;
+                        </a>
+                    </div>
+
+                    <!-- CENTER CARD: Import -->
+                    <div
+                        class="bg-white border border-[#D4AF37] rounded-xl p-8 text-center shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between items-center">
+                        <div class="mb-6">
+                            <!-- Elegant Gold Icon (Simulated Globe/Shipping) -->
+                            <svg class="w-10 h-10 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9">
+                                </path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-serif text-xl font-light tracking-wide text-[#2D2D2D] mb-3">
+                                Import
+                            </h3>
+                            <p class="text-xs text-gray-500 leading-relaxed max-w-xs mx-auto">
+                                Seamless global sourcing, enclosed freight logistics, and complete handling of LTA
+                                classic
+                                vehicle scheme regulations.
+                            </p>
+                        </div>
+                        <a href="#"
+                            class="mt-6 text-xs font-bold tracking-wider text-[#D4AF37] uppercase hover:text-[#B8942F] transition-colors">
+                            Explore Services &rarr;
+                        </a>
+                    </div>
+
+                    <!-- RIGHT CARD: Financing / Insurance -->
+                    <div
+                        class="bg-white border border-[#D4AF37] rounded-xl p-8 text-center shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between items-center">
+                        <div class="mb-6">
+                            <!-- Elegant Gold Icon (Simulated Asset/Shield) -->
+                            <svg class="w-10 h-10 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-serif text-xl font-light tracking-wide text-[#2D2D2D] mb-3">
+                                Financing / Insurance
+                            </h3>
+                            <p class="text-xs text-gray-500 leading-relaxed max-w-xs mx-auto">
+                                Bespoke financial structures and specialized vintage auto insurance tailored
+                                specifically
+                                for high-value collector assets in Singapore.
+                            </p>
+                        </div>
+                        <a href="#"
+                            class="mt-6 text-xs font-bold tracking-wider text-[#D4AF37] uppercase hover:text-[#B8942F] transition-colors">
+                            Explore Services &rarr;
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. FEATURED VEHICLES SECTION -->
+        <section class="bg-white py-20 px-6 md:px-12 lg:px-24">
+            <div class="max-w-7xl mx-auto">
+
+                <!-- Section Header and CTA -->
+                <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-14">
+                    <div class="text-left">
+                        <span class="text-[#D4AF37] text-xs font-bold tracking-[0.3em] uppercase block mb-2">
+                            Curated Classics
+                        </span>
+                        <h2 class="font-serif text-4xl font-light text-[#2D2D2D]">
+                            Featured <em class="font-normal italic">Vehicles</em>
+                        </h2>
+                        <div class="w-12 h-px bg-[#D4AF37] mt-3"></div>
+                    </div>
+
+                    <div class="md:ml-auto md:self-start">
+                        <a href="#"
+                            class="text-[#D4AF37] text-xs font-bold tracking-wider uppercase transition-colors duration-300 hover:underline underline-offset-4 decoration-2 decoration-[#D4AF37]">
+                            View Full Collection →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Vehicle Cards Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                    <!-- Card 1: Ford Mustang -->
+                    <div
+                        class="border border-[#D4AF37] rounded-xl overflow-hidden flex flex-col hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+                                alt="1966 Ford Mustang Fastback" class="w-full h-52 object-cover" />
+                            <span
+                                class="absolute top-3 left-3 bg-[#D4AF37] text-white text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded">
+                                For Sale
+                            </span>
+                        </div>
+                        <div class="p-5 flex flex-col gap-2 flex-1">
+                            <div>
+                                <p class="text-[10px] tracking-widest text-gray-400 uppercase mb-1">1966 · Ford</p>
+                                <h3 class="font-serif text-lg font-normal text-[#2D2D2D]">Mustang Fastback</h3>
+                            </div>
+                            <p class="text-xs text-gray-400 leading-relaxed">289 V8 · 4-speed manual · Fully restored to
+                                concours standard.</p>
+                            <div class="mt-auto pt-3 border-t border-[#f0e8cc] flex items-center justify-between">
+                                <span class="text-[#D4AF37] text-lg font-semibold">S$188,000</span>
+                                <a href="#"
+                                    class="border border-[#D4AF37] text-[#D4AF37] text-[10px] font-bold tracking-widest uppercase px-4 py-2 hover:bg-[#D4AF37] hover:text-white transition-all duration-300">
+                                    details →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Porsche 911 -->
+                    <div
+                        class="border border-[#D4AF37] rounded-xl overflow-hidden flex flex-col hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1580274455191-1c62238fa333?auto=format&fit=crop&w=800&q=80"
+                                alt="1972 Porsche 911 T" class="w-full h-52 object-cover" />
+                            <span
+                                class="absolute top-3 left-3 bg-[#D4AF37] text-white text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded">
+                                For Sale
+                            </span>
+                        </div>
+                        <div class="p-5 flex flex-col gap-2 flex-1">
+                            <div>
+                                <p class="text-[10px] tracking-widest text-gray-400 uppercase mb-1">1972 · Porsche</p>
+                                <h3 class="font-serif text-lg font-normal text-[#2D2D2D]">911 T Coupe</h3>
+                            </div>
+                            <p class="text-xs text-gray-400 leading-relaxed">2.4L flat-six · Matching numbers · Original
+                                Gulf Blue livery intact.</p>
+                            <div class="mt-auto pt-3 border-t border-[#f0e8cc] flex items-center justify-between">
+                                <span class="text-[#D4AF37] text-lg font-semibold">S$320,000</span>
+                                <a href="#"
+                                    class="border border-[#D4AF37] text-[#D4AF37] text-[10px] font-bold tracking-widest uppercase px-4 py-2 hover:bg-[#D4AF37] hover:text-white transition-all duration-300">
+                                    details →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Mercedes 280 SL -->
+                    <div
+                        class="border border-[#D4AF37] rounded-xl overflow-hidden flex flex-col hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=800&q=80"
+                                alt="1969 Mercedes-Benz 280 SL" class="w-full h-52 object-cover" />
+                            <span
+                                class="absolute top-3 left-3 bg-[#2D2D2D] text-white text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded">
+                                Newly Listed
+                            </span>
+                        </div>
+                        <div class="p-5 flex flex-col gap-2 flex-1">
+                            <div>
+                                <p class="text-[10px] tracking-widest text-gray-400 uppercase mb-1">1969 · Mercedes-Benz
+                                </p>
+                                <h3 class="font-serif text-lg font-normal text-[#2D2D2D]">280 SL Pagoda</h3>
+                            </div>
+                            <p class="text-xs text-gray-400 leading-relaxed">2.8L inline-six · Soft & hardtop ·
+                                Frame-off restoration, 8,200 miles.</p>
+                            <div class="mt-auto pt-3 border-t border-[#f0e8cc] flex items-center justify-between">
+                                <span class="text-[#D4AF37] text-lg font-semibold">S$265,000</span>
+                                <a href="#"
+                                    class="border border-[#D4AF37] text-[#D4AF37] text-[10px] font-bold tracking-widest uppercase px-4 py-2 hover:bg-[#D4AF37] hover:text-white transition-all duration-300">
+                                    details →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Ferrari 308 -->
+                    <div
+                        class="border border-[#D4AF37] rounded-xl overflow-hidden flex flex-col hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1590362891991-f776e747a588?auto=format&fit=crop&w=800&q=80"
+                                alt="1985 Ferrari 308 GTS" class="w-full h-52 object-cover" />
+                            <span
+                                class="absolute top-3 left-3 bg-[#D4AF37] text-white text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded">
+                                For Sale
+                            </span>
+                        </div>
+                        <div class="p-5 flex flex-col gap-2 flex-1">
+                            <div>
+                                <p class="text-[10px] tracking-widest text-gray-400 uppercase mb-1">1985 · Ferrari</p>
+                                <h3 class="font-serif text-lg font-normal text-[#2D2D2D]">308 GTS QV</h3>
+                            </div>
+                            <p class="text-xs text-gray-400 leading-relaxed">3.0L V8 · Rosso Corsa · Full service
+                                history with Ferrari Classiche certificate.</p>
+                            <div class="mt-auto pt-3 border-t border-[#f0e8cc] flex items-center justify-between">
+                                <span class="text-[#D4AF37] text-lg font-semibold">S$410,000</span>
+                                <a href="#"
+                                    class="border border-[#D4AF37] text-[#D4AF37] text-[10px] font-bold tracking-widest uppercase px-4 py-2 hover:bg-[#D4AF37] hover:text-white transition-all duration-300">
+                                    details →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. ENQUIRY SECTION -->
+        <section class="bg-[#F9F9F9] py-20 px-6 md:px-12">
+            <div class="max-w-6xl mx-auto">
+
+                <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-12 lg:gap-16 items-center">
+
+                    <!-- LEFT: Text Content -->
+                    <div>
+                        <span class="text-[#D4AF37] text-xs font-bold tracking-[0.3em] uppercase">
+                            Get In Touch
+                        </span>
+                        <h2 class="font-serif text-4xl font-light text-[#2D2D2D] mt-3 leading-tight">
+                            Send Us An <em class="font-normal italic">Enquiry</em>
+                        </h2>
+                        <div class="w-12 h-px bg-[#D4AF37] mt-4"></div>
+                        <p class="text-sm text-gray-500 mt-5 leading-relaxed max-w-sm">
+                            Whether you are looking to buy, sell, or simply learn more about a particular marque, our
+                            specialists are ready to assist.
+                        </p>
+
+                        <!-- Contact Details -->
+                        <!-- <div class="mt-9 flex flex-col gap-4">
+                            <div class="flex items-center gap-3">
+                                <span class="text-[#D4AF37] text-sm">&#9742;</span>
+                                <span class="text-sm text-[#2D2D2D]">+65 6123 4567</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-[#D4AF37] text-sm">&#9993;</span>
+                                <span class="text-sm text-[#2D2D2D]">enquiries@classiccarsg.com</span>
+                            </div>
+                        </div> -->
+                    </div>
+
+                    <!-- RIGHT: Form Card -->
+                    <form class="bg-white border border-[#D4AF37] rounded-xl p-8 lg:p-10">
+
+                        <div class="space-y-5">
+                            <div>
+                                <label class="text-[10px] font-bold tracking-widest uppercase text-gray-500 block mb-2">
+                                    Name
+                                </label>
+                                <input type="text" placeholder="John Tan"
+                                    class="w-full border border-gray-300 bg-white px-4 py-3 text-sm text-[#2D2D2D] outline-none focus:border-[#D4AF37] transition-colors" />
+                            </div>
+
+                            <div>
+                                <label class="text-[10px] font-bold tracking-widest uppercase text-gray-500 block mb-2">
+                                    Email
+                                </label>
+                                <input type="email" placeholder="john@example.com"
+                                    class="w-full border border-gray-300 bg-white px-4 py-3 text-sm text-[#2D2D2D] outline-none focus:border-[#D4AF37] transition-colors" />
+                            </div>
+
+                            <div>
+                                <label class="text-[10px] font-bold tracking-widest uppercase text-gray-500 block mb-2">
+                                    Subject
+                                </label>
+                                <input type="text" placeholder="Enquiry about 1969 Mercedes-Benz 280 SL"
+                                    class="w-full border border-gray-300 bg-white px-4 py-3 text-sm text-[#2D2D2D] outline-none focus:border-[#D4AF37] transition-colors" />
+                            </div>
+
+                            <div>
+                                <label class="text-[10px] font-bold tracking-widest uppercase text-gray-500 block mb-2">
+                                    Message
+                                </label>
+                                <textarea rows="4" placeholder="Tell us more about what you're looking for..."
+                                    class="w-full border border-gray-300 bg-white px-4 py-3 text-sm text-[#2D2D2D] outline-none focus:border-[#D4AF37] transition-colors resize-y"></textarea>
+                            </div>
+
+                            <div>
+                                <button type="submit"
+                                    class="bg-[#D4AF37] text-white px-9 py-4 text-xs font-bold tracking-wider uppercase hover:bg-[#B8942F] transition-all duration-300">
+                                    Submit Enquiry →
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 6. FOOTER -->
+        <footer class="bg-[#1A1A1A]">
+            <div class="max-w-7xl mx-auto px-8 py-14">
+
+                <div class="grid grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr] gap-10 items-start text-left">
+
+                    <!-- Brand Column (Updated to match Navbar Logo style but for Dark Theme) -->
+                    <div class="col-span-2 md:col-span-1 flex flex-col items-start justify-start">
+                        <a href="#" class="flex flex-col items-start group mb-4">
+                            <!-- Main Title -->
+                            <span
+                                class="text-xl font-serif font-light tracking-widest text-white leading-none uppercase transition-colors group-hover:text-gray-200">
+                                Classic Car
+                            </span>
+                            <!-- Subtitle / Location -->
+                            <span
+                                class="text-[11px] font-sans font-bold tracking-[0.4em] text-[#D4AF37] uppercase leading-none mt-2 mr-[-0.4em]">
+                                Singapore
+                            </span>
+                        </a>
+                        <p class="text-xs text-gray-500 leading-relaxed max-w-[220px]">
+                            Singapore's premier destination for timeless automotive masterpieces.
+                        </p>
+                    </div>
+
+                    <!-- Explore Column -->
+                    <div class="text-left">
+                        <p class="text-[11px] font-bold tracking-widest uppercase text-white mb-4">
+                            Explore
+                        </p>
+                        <a href="#"
+                            class="block text-xs text-gray-400 hover:text-[#D4AF37] transition-colors mb-3">Home</a>
+                        <a href="#" class="block text-xs text-gray-400 hover:text-[#D4AF37] transition-colors mb-3">Buy
+                            a Car</a>
+                        <a href="#" class="block text-xs text-gray-400 hover:text-[#D4AF37] transition-colors mb-3">Sell
+                            a Car</a>
+                        <a href="#"
+                            class="block text-xs text-gray-400 hover:text-[#D4AF37] transition-colors mb-3">Import/Finance</a>
+                    </div>
+
+                    <!-- Company Column -->
+                    <div class="text-left">
+                        <p class="text-[11px] font-bold tracking-widest uppercase text-white mb-4">
+                            Company
+                        </p>
+                        <a href="#" class="block text-xs text-gray-400 hover:text-[#D4AF37] transition-colors mb-3">TT
+                            Italia Kids Car</a>
+                        <a href="#"
+                            class="block text-xs text-gray-400 hover:text-[#D4AF37] transition-colors mb-3">About Us</a>
+                        <a href="#"
+                            class="block text-xs text-gray-400 hover:text-[#D4AF37] transition-colors mb-3">Contact
+                            Us</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Copyright Bar -->
+            <div class="border-t border-[#2e2e2e]">
+                <div
+                    class="max-w-7xl mx-auto px-8 py-5 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-2">
+                    <p class="text-[11px] text-gray-500">
+                        © 2026 Classic Car Singapore. All rights reserved.
+                    </p>
+                    <!-- Optional subtle extra link standard in luxury footprints -->
+                    <div class="flex gap-4 text-[11px] text-gray-600">
+                        <a href="#" class="hover:text-gray-400 transition-colors">Privacy Policy</a>
+                        <a href="#" class="hover:text-gray-400 transition-colors">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

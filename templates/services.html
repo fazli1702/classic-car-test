@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block title %}Import & Finance{% endblock %}
+
+{% block content %}
+
+<!-- PAGE HEADER -->
+<section class="relative bg-[#1A1A1A] overflow-hidden py-24 px-6">
+    <div class="absolute inset-0 bg-cover bg-center opacity-30"
+        style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920');">
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent"></div>
+
+    <div class="relative z-10 text-center max-w-3xl mx-auto">
+        <span class="text-[#D4AF37] text-xs font-bold tracking-[0.3em] uppercase block mb-4">
+            Our Services
+        </span>
+        <h1 class="text-white font-serif text-4xl md:text-5xl font-light tracking-tight leading-tight">
+            Import & <em class="font-normal italic">Finance</em>
+        </h1>
+    </div>
+</section>
+
+<!-- IMPORT SERVICE SECTION -->
+<section class="bg-[#F9F9F9] py-20 px-6 md:px-12 lg:px-24">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+            <!-- LEFT: Image -->
+            <div>
+                <p class="text-[10px] font-bold tracking-widest uppercase text-gray-400 mb-3 text-center">Import and Registration By</p>
+                <a href="https://www.classicnexoticsg.com/" target="_blank" rel="noopener noreferrer">
+                    <img src="{{ url_for('static', filename='images/classic_exotic.jpg') }}"
+                        alt="The Classic & Exotic Car Company Pte Ltd"
+                        class="w-full max-w-md mx-auto object-contain rounded-xl border border-[#D4AF37] p-4 bg-white" />
+                </a>
+            </div>
+
+            <!-- RIGHT: Text -->
+            <div class="text-left">
+                <span class="text-[#D4AF37] text-xs font-bold tracking-[0.3em] uppercase block mb-3">
+                    Import & Registration
+                </span>
+                <h3 class="font-serif text-3xl font-light text-[#2D2D2D] mb-6 leading-tight">
+                    Bringing Classics <em class="font-normal italic">To Singapore</em>
+                </h3>
+                <div class="w-12 h-px bg-[#D4AF37] mb-6"></div>
+                <p class="text-sm text-gray-500 leading-relaxed tracking-wide mb-4">
+                    Each Classic Car is special and has its own unique set of required documentation and regulations to allow it to be imported and registered in Singapore.
+                </p>
+                <p class="text-sm text-gray-500 leading-relaxed tracking-wide mb-4">
+                    The Classic and Exotic Car Company has imported and registered numerous cars for over 10 years.
+                </p>
+                <p class="text-sm text-gray-500 leading-relaxed tracking-wide mb-6">
+                    Do contact us for any enquiries.
+                </p>
+
+                <!-- Contact Details -->
+                <div class="flex flex-col gap-4">
+                    <div class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-[#D4AF37] flex-shrink-0" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                        </svg>
+                        <a href="https://www.classicnexoticsg.com/" target="_blank" rel="noopener noreferrer"
+                            class="text-sm text-[#D4AF37] hover:text-[#B8942F] transition-colors">
+                            www.classicnexoticsg.com
+                        </a>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-[#D4AF37] flex-shrink-0" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <a href="mailto:csl@classicnexotic.sg"
+                            class="text-sm text-[#D4AF37] hover:text-[#B8942F] transition-colors">
+                            csl@classicnexotic.sg
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- FINANCE SERVICE SECTION -->
+<section class="bg-white py-20 px-6 md:px-12 lg:px-24">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+            <!-- LEFT: Text -->
+            <div class="text-left">
+                <span class="text-[#D4AF37] text-xs font-bold tracking-[0.3em] uppercase block mb-3">
+                    Financing
+                </span>
+                <h3 class="font-serif text-3xl font-light text-[#2D2D2D] mb-6 leading-tight">
+                    Flexible <em class="font-normal italic">Financing Options</em>
+                </h3>
+                <div class="w-12 h-px bg-[#D4AF37] mb-6"></div>
+                <p class="text-sm text-gray-500 leading-relaxed tracking-wide mb-4">
+                    Financing Options are available for cars already landed in Singapore Only.
+                </p>
+                <p class="text-sm text-gray-500 leading-relaxed tracking-wide mb-4">
+                    We have a good relationship with a number of Singapore registered companies that provide financing and insurance for classic cars.
+                </p>
+                <p class="text-sm text-gray-500 leading-relaxed tracking-wide mb-6">
+                    Contact us for more details.
+                </p>
+                <a href="/contact"
+                    class="inline-block bg-[#D4AF37] text-white px-9 py-4 text-xs font-bold tracking-wider uppercase hover:bg-[#B8942F] transition-all duration-300">
+                    Contact Us →
+                </a>
+            </div>
+
+            <!-- RIGHT: Icon / Visual -->
+            <div class="flex items-center justify-center">
+                <div class="bg-[#F9F9F9] border border-[#D4AF37] rounded-xl p-12 text-center max-w-sm w-full">
+                    <svg class="w-16 h-16 text-[#D4AF37] mx-auto mb-6" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <p class="font-serif text-xl font-light text-[#2D2D2D] mb-2">Financing & Insurance</p>
+                    <p class="text-xs text-gray-400 tracking-widest uppercase">For Classic Cars in Singapore</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="bg-[#1A1A1A] py-20 px-6 md:px-12 text-center">
+    <div class="max-w-2xl mx-auto">
+        <span class="text-[#D4AF37] text-xs font-bold tracking-[0.3em] uppercase block mb-4">
+            Need Assistance?
+        </span>
+        <h2 class="font-serif text-3xl font-light text-white mb-6">
+            Let Us Help With Your <em class="font-normal italic">Classic Car Journey</em>
+        </h2>
+        <a href="/contact"
+            class="inline-block border border-[#D4AF37] text-[#D4AF37] px-9 py-4 text-xs font-bold tracking-wider uppercase hover:bg-[#D4AF37] hover:text-white transition-all duration-300">
+            Get In Touch →
+        </a>
+    </div>
+</section>
+
+{% endblock %}

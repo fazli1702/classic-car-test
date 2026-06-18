@@ -1,0 +1,233 @@
+{% extends "base.html" %}
+
+{% block title %}{{ vehicle.name }}{% endblock %}
+
+{% block content %}
+
+<!-- BREADCRUMB -->
+<section class="bg-[#F9F9F9] border-b border-gray-100 px-6 md:px-12 lg:px-24 py-5">
+    <div class="max-w-7xl mx-auto">
+        <nav class="text-[11px] tracking-widest uppercase text-gray-400 flex items-center gap-2">
+            <a href="/" class="hover:text-[#D4AF37] transition-colors">Home</a>
+            <span>/</span>
+            <a href="/buy" class="hover:text-[#D4AF37] transition-colors">Buy a Car</a>
+            <span>/</span>
+            <span class="text-[#2D2D2D]">{{ vehicle.name }}</span>
+        </nav>
+    </div>
+</section>
+
+<!-- MAIN DETAILS SECTION -->
+<section class="bg-white py-16 px-6 md:px-12 lg:px-24">
+    <div class="max-w-7xl mx-auto">
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+
+            <!-- LEFT: IMAGE GALLERY -->
+            <div>
+                <!-- Main Image -->
+                <div class="relative border border-[#D4AF37] rounded-xl overflow-hidden mb-4 group">
+                    <!-- <span
+                        class="absolute top-4 left-4 z-10 bg-[#D4AF37] text-white text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 rounded">
+                        For Sale
+                    </span> -->
+                    <img id="main-image" src="{{ vehicle.images[0] }}"
+                        alt="{{ vehicle.year }} {{ vehicle.make }} {{ vehicle.model }}"
+                        class="w-full h-[420px] lg:h-[480px] object-cover transition-opacity duration-300 cursor-pointer"
+                        onclick="openLightbox()" />
+                    <!-- Left Arrow -->
+                    <button type="button" onclick="changeImage(-1)"
+                        class="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+                    </button>
+                    <!-- Right Arrow -->
+                    <button type="button" onclick="changeImage(1)"
+                        class="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                    </button>
+                </div>
+
+                <!-- Thumbnail Queue -->
+                <div class="flex gap-3 overflow-x-auto pb-2" id="thumbnail-row">
+                    {% for image in vehicle.images %}
+                    <button type="button" data-index="{{ loop.index0 }}"
+                        class="thumbnail-btn flex-shrink-0 w-24 h-20 rounded-lg overflow-hidden border-2 {{ 'border-[#D4AF37]' if loop.first else 'border-transparent' }} hover:border-[#D4AF37] transition-colors duration-200">
+                        <img src="{{ image }}" alt="{{ vehicle.name }} thumbnail {{ loop.index }}"
+                            class="w-full h-full object-cover" />
+                    </button>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Lightbox Overlay -->
+            <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 hidden items-center justify-center" onclick="if(event.target===this)closeLightbox()">
+                <button type="button" onclick="closeLightbox()"
+                    class="absolute top-6 right-6 z-10 w-10 h-10 text-white/70 hover:text-white transition-colors">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+                <button type="button" onclick="changeImage(-1)"
+                    class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <img id="lightbox-image" src="" alt="Enlarged view" class="max-h-[85vh] max-w-[90vw] object-contain" />
+                <button type="button" onclick="changeImage(1)"
+                    class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                </button>
+                <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/60 text-xs tracking-widest uppercase" id="lightbox-counter"></div>
+            </div>
+
+            <!-- RIGHT: CAR INFO -->
+            <div class="text-left">
+                <p class="text-[10px] tracking-widest text-gray-400 uppercase mb-2">{{ vehicle.year }} · {{ vehicle.make }}</p>
+                <h1 class="font-serif text-3xl md:text-4xl font-light text-[#2D2D2D] leading-tight mb-3">
+                    {{ vehicle.name }}
+                </h1>
+                <div class="w-12 h-px bg-[#D4AF37] mb-5"></div>
+
+                <p class="text-[#D4AF37] text-2xl font-semibold mb-8">{{ vehicle.price }}</p>
+
+                <!-- Specs Grid -->
+                <div class="grid grid-cols-2 gap-y-5 gap-x-6 border-t border-b border-gray-100 py-7 mb-8">
+                    <div>
+                        <p class="text-[10px] font-bold tracking-widest uppercase text-gray-400 mb-1">Model</p>
+                        <p class="text-sm text-[#2D2D2D]">{{ vehicle.model }}</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold tracking-widest uppercase text-gray-400 mb-1">Body Type</p>
+                        <p class="text-sm text-[#2D2D2D]">{{ vehicle.body_type }}</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold tracking-widest uppercase text-gray-400 mb-1">Transmission</p>
+                        <p class="text-sm text-[#2D2D2D]">{{ vehicle.transmission }}</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold tracking-widest uppercase text-gray-400 mb-1">Doors</p>
+                        <p class="text-sm text-[#2D2D2D]">{{ vehicle.doors }}</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold tracking-widest uppercase text-gray-400 mb-1">Exterior Color</p>
+                        <p class="text-sm text-[#2D2D2D]">{{ vehicle.exterior_color }}</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold tracking-widest uppercase text-gray-400 mb-1">Interior Color</p>
+                        <p class="text-sm text-[#2D2D2D]">{{ vehicle.interior_color }}</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold tracking-widest uppercase text-gray-400 mb-1">Air Conditioning</p>
+                        <p class="text-sm text-[#2D2D2D]">{{ vehicle.air_conditioning }}</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold tracking-widest uppercase text-gray-400 mb-1">Licensing Scheme</p>
+                        <p class="text-sm text-[#2D2D2D]">{{ vehicle.licensing_scheme }}</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold tracking-widest uppercase text-gray-400 mb-1">Location</p>
+                        <p class="text-sm text-[#2D2D2D]">{{ vehicle.location }}</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold tracking-widest uppercase text-gray-400 mb-1">Contact</p>
+                        <p class="text-sm text-[#2D2D2D]">{{ vehicle.contact }}</p>
+                    </div>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="/contact"
+                        class="flex-1 text-center bg-[#D4AF37] text-white px-8 py-4 text-xs font-bold tracking-wider uppercase hover:bg-[#B8942F] transition-all duration-300">
+                        Enquire →
+                    </a>
+                    <a href="/buy"
+                        class="flex-1 text-center border border-[#D4AF37] text-[#D4AF37] px-8 py-4 text-xs font-bold tracking-wider uppercase hover:bg-[#D4AF37] hover:text-white transition-all duration-300">
+                        Back to Collection
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- DESCRIPTION & RESTORATION -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mt-16 pt-16 border-t border-gray-100">
+
+            <div class="text-left">
+                <span class="text-[#D4AF37] text-xs font-bold tracking-[0.3em] uppercase block mb-3">
+                    The Car
+                </span>
+                <h2 class="font-serif text-2xl font-light text-[#2D2D2D] mb-5">
+                    Vehicle <em class="font-normal italic">Details</em>
+                </h2>
+                <p class="text-sm text-gray-500 leading-relaxed">{{ vehicle.details }}</p>
+            </div>
+
+            <div class="text-left">
+                <span class="text-[#D4AF37] text-xs font-bold tracking-[0.3em] uppercase block mb-3">
+                    Provenance
+                </span>
+                <h2 class="font-serif text-2xl font-light text-[#2D2D2D] mb-5">
+                    Restoration <em class="font-normal italic">History</em>
+                </h2>
+                <p class="text-sm text-gray-500 leading-relaxed">{{ vehicle.restoration }}</p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<script>
+    (function () {
+        const images = {{ vehicle.images | tojson }};
+        let currentIndex = 0;
+
+        const mainImage = document.getElementById('main-image');
+        const thumbnails = document.querySelectorAll('.thumbnail-btn');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightbox-image');
+        const lightboxCounter = document.getElementById('lightbox-counter');
+
+        function goToImage(index) {
+            currentIndex = (index + images.length) % images.length;
+            mainImage.style.opacity = 0;
+            setTimeout(() => {
+                mainImage.src = images[currentIndex];
+                mainImage.style.opacity = 1;
+            }, 150);
+            thumbnails.forEach((t, i) => {
+                t.classList.toggle('border-[#D4AF37]', i === currentIndex);
+                t.classList.toggle('border-transparent', i !== currentIndex);
+            });
+            if (!lightbox.classList.contains('hidden')) {
+                lightboxImage.src = images[currentIndex];
+                lightboxCounter.textContent = (currentIndex + 1) + ' / ' + images.length;
+            }
+        }
+
+        window.changeImage = function (dir) { goToImage(currentIndex + dir); };
+
+        window.openLightbox = function () {
+            lightboxImage.src = images[currentIndex];
+            lightboxCounter.textContent = (currentIndex + 1) + ' / ' + images.length;
+            lightbox.classList.remove('hidden');
+            lightbox.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        };
+
+        window.closeLightbox = function () {
+            lightbox.classList.add('hidden');
+            lightbox.classList.remove('flex');
+            document.body.style.overflow = '';
+        };
+
+        thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', () => goToImage(parseInt(thumb.dataset.index)));
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') changeImage(-1);
+            if (e.key === 'ArrowRight') changeImage(1);
+        });
+    })();
+</script>
+
+{% endblock %}

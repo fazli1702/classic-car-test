@@ -1,0 +1,356 @@
+{% extends "base.html" %}
+
+{% block title %}Buy a Car{% endblock %}
+
+{% block content %}
+
+<!-- PAGE HEADER -->
+<section class="relative bg-[#1A1A1A] overflow-hidden py-24 px-6">
+    <div class="absolute inset-0 bg-cover bg-center opacity-30"
+        style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920');">
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent"></div>
+
+    <div class="relative z-10 text-center max-w-3xl mx-auto">
+        <span class="text-[#D4AF37] text-xs font-bold tracking-[0.3em] uppercase block mb-4">
+            Our Collection
+        </span>
+        <h1 class="text-white font-serif text-4xl md:text-5xl font-light tracking-tight leading-tight">
+            Buy a <em class="font-normal italic">Classic</em>
+        </h1>
+    </div>
+</section>
+
+<!-- COLLECTION SECTION -->
+<section class="bg-white py-20 px-6 md:px-12 lg:px-24">
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Section Header -->
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+            <div class="text-left">
+                <span class="text-[#D4AF37] text-xs font-bold tracking-[0.3em] uppercase block mb-2" id="result-count">
+                    {{ vehicle_details|length }} Vehicles Available
+                </span>
+                <h2 class="font-serif text-4xl font-light text-[#2D2D2D]">
+                    The Full <em class="font-normal italic">Collection</em>
+                </h2>
+                <div class="w-12 h-px bg-[#D4AF37] mt-3"></div>
+            </div>
+            <div class="flex items-center gap-3">
+                <label class="text-[10px] font-bold tracking-widest uppercase text-gray-500 whitespace-nowrap">Sort By</label>
+                <select id="sort-by"
+                    class="border border-gray-300 bg-white px-4 py-2.5 text-sm text-[#2D2D2D] outline-none focus:border-[#D4AF37] transition-colors appearance-none cursor-pointer pr-8">
+                    <option value="default">Default</option>
+                    <option value="name-asc">Name A–Z</option>
+                    <option value="name-desc">Name Z–A</option>
+                    <option value="price-asc">Price: Low to High</option>
+                    <option value="price-desc">Price: High to Low</option>
+                    <option value="year-asc">Year: Oldest First</option>
+                    <option value="year-desc">Year: Newest First</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-8">
+
+            <!-- LEFT: Filter Sidebar -->
+            <div class="lg:w-64 flex-shrink-0">
+                <div class="bg-[#F9F9F9] border border-[#D4AF37] rounded-xl p-6 lg:sticky lg:top-8">
+                    <h3 class="font-serif text-lg font-light text-[#2D2D2D] mb-5">Filters</h3>
+                    <div class="space-y-6">
+
+                        <!-- Make Dropdown -->
+                        <div>
+                            <label class="text-[10px] font-bold tracking-widest uppercase text-gray-500 block mb-2">
+                                Make
+                            </label>
+                            <select id="filter-make"
+                                class="w-full border border-gray-300 bg-white px-4 py-3 text-sm text-[#2D2D2D] outline-none focus:border-[#D4AF37] transition-colors appearance-none cursor-pointer">
+                                <option value="all">All Makes</option>
+                                {% for make in makes %}
+                                <option value="{{ make }}">{{ make }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- Model Dropdown -->
+                        <div>
+                            <label class="text-[10px] font-bold tracking-widest uppercase text-gray-500 block mb-2">
+                                Model
+                            </label>
+                            <select id="filter-model"
+                                class="w-full border border-gray-300 bg-white px-4 py-3 text-sm text-[#2D2D2D] outline-none focus:border-[#D4AF37] transition-colors appearance-none cursor-pointer">
+                                <option value="all">All Models</option>
+                                {% for model in models %}
+                                <option value="{{ model }}">{{ model }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- Year Range Slider -->
+                        <div>
+                            <label class="text-[10px] font-bold tracking-widest uppercase text-gray-500 block mb-2">
+                                Year
+                            </label>
+                            <div class="flex items-center justify-between text-xs text-[#2D2D2D] mb-3">
+                                <span id="year-min-label">1900</span>
+                                <span id="year-max-label">{{ current_year }}</span>
+                            </div>
+                            <div class="range-slider relative h-1.5 bg-gray-200 rounded-full">
+                                <div id="year-range-track" class="absolute h-full bg-[#D4AF37] rounded-full"></div>
+                                <input type="range" id="year-min" min="1900" max="{{ current_year }}" value="1900" step="1"
+                                    class="range-thumb absolute w-full top-1/2 -translate-y-1/2 appearance-none bg-transparent pointer-events-none" />
+                                <input type="range" id="year-max" min="1900" max="{{ current_year }}" value="{{ current_year }}" step="1"
+                                    class="range-thumb absolute w-full top-1/2 -translate-y-1/2 appearance-none bg-transparent pointer-events-none" />
+                            </div>
+                        </div>
+
+                        <!-- Price Range Slider -->
+                        <div>
+                            <label class="text-[10px] font-bold tracking-widest uppercase text-gray-500 block mb-2">
+                                Price Range
+                            </label>
+                            <div class="flex items-center justify-between text-xs text-[#2D2D2D] mb-3">
+                                <span id="price-min-label">S$0</span>
+                                <span id="price-max-label">S$400,000</span>
+                            </div>
+                            <div class="range-slider relative h-1.5 bg-gray-200 rounded-full">
+                                <div id="range-track" class="absolute h-full bg-[#D4AF37] rounded-full"></div>
+                                <input type="range" id="price-min" min="0" max="400000" value="0" step="5000"
+                                    class="range-thumb absolute w-full top-1/2 -translate-y-1/2 appearance-none bg-transparent pointer-events-none" />
+                                <input type="range" id="price-max" min="0" max="400000" value="400000" step="5000"
+                                    class="range-thumb absolute w-full top-1/2 -translate-y-1/2 appearance-none bg-transparent pointer-events-none" />
+                            </div>
+                        </div>
+
+                        <!-- Reset Button -->
+                        <div>
+                            <button id="reset-filters" type="button"
+                                class="w-full border border-gray-300 text-gray-500 px-5 py-3 text-xs font-bold tracking-wider uppercase hover:bg-gray-200 hover:text-gray-700 transition-all duration-300">
+                                Reset Filters
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: Vehicle Cards -->
+            <div class="flex-1">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="vehicle-grid">
+                    {% for vehicle in vehicle_details %}
+                    <div data-make="{{ vehicle.make }}" data-model="{{ vehicle.model }}" data-year="{{ vehicle.year }}" data-price="{{ vehicle.price_numeric }}" data-name="{{ vehicle.name }}" data-order="{{ loop.index0 }}"
+                        class="vehicle-card border border-[#D4AF37] rounded-xl overflow-hidden flex flex-col hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300">
+                        <div class="relative">
+                            <img src="{{ vehicle.src }}"
+                                alt="{{ vehicle.year }} {{ vehicle.make }} {{ vehicle.model }}" class="w-full h-52 object-cover" />
+                        </div>
+                        <div class="p-5 flex flex-col gap-2 flex-1">
+                            <div>
+                                <p class="text-[10px] tracking-widest text-gray-400 uppercase mb-1">{{ vehicle.year }} · {{ vehicle.make }}</p>
+                                <h3 class="font-serif text-lg font-normal text-[#2D2D2D]">{{ vehicle.name }}</h3>
+                            </div>
+                            <p class="text-xs text-gray-400 leading-relaxed">
+                                {{ vehicle.licensing_scheme }} · {{ vehicle.transmission }} · {{ vehicle.body_type }}
+                            </p>
+                            <div class="mt-auto pt-3 border-t border-[#f0e8cc] flex items-center justify-between">
+                                <span class="text-[#D4AF37] text-lg font-semibold">{{ vehicle.price }}</span>
+                                <a href="/details/{{ vehicle.id }}"
+                                    class="border border-[#D4AF37] text-[#D4AF37] text-[10px] font-bold tracking-widest uppercase px-4 py-2 hover:bg-[#D4AF37] hover:text-white transition-all duration-300">
+                                    details →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Empty State -->
+                <div id="empty-state" class="hidden text-center py-20">
+                    <p class="text-sm text-gray-400 uppercase tracking-widest">No vehicles match these filters right now.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- CTA / CONSIGN SECTION -->
+<section class="bg-[#F9F9F9] py-20 px-6 text-center">
+    <div class="max-w-2xl mx-auto">
+        <span class="text-[#D4AF37] text-xs font-bold tracking-[0.3em] uppercase block mb-3">
+            Don't See What You're Looking For?
+        </span>
+        <h2 class="font-serif text-3xl font-light text-[#2D2D2D] mb-6">
+            Let Us Source It <em class="font-normal italic">For You</em>
+        </h2>
+        <a href="/contact"
+            class="inline-block bg-[#D4AF37] text-white px-9 py-4 text-xs font-bold tracking-wider uppercase hover:bg-[#B8942F] transition-all duration-300">
+            Send An Enquiry →
+        </a>
+    </div>
+</section>
+
+<style>
+    .range-slider input[type="range"] { height: 0; margin: 0; }
+    .range-slider input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 18px; height: 18px;
+        border-radius: 50%;
+        background: #D4AF37;
+        border: 2px solid white;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+        cursor: pointer;
+        pointer-events: auto;
+    }
+    .range-slider input[type="range"]::-moz-range-thumb {
+        width: 18px; height: 18px;
+        border-radius: 50%;
+        background: #D4AF37;
+        border: 2px solid white;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+        cursor: pointer;
+        pointer-events: auto;
+    }
+</style>
+
+<script>
+    (function () {
+        const grid = document.getElementById('vehicle-grid');
+        const emptyState = document.getElementById('empty-state');
+        const resultCount = document.getElementById('result-count');
+
+        const makeSelect = document.getElementById('filter-make');
+        const modelSelect = document.getElementById('filter-model');
+        const sortSelect = document.getElementById('sort-by');
+
+        const priceMin = document.getElementById('price-min');
+        const priceMax = document.getElementById('price-max');
+        const priceMinLabel = document.getElementById('price-min-label');
+        const priceMaxLabel = document.getElementById('price-max-label');
+        const priceRangeTrack = document.getElementById('range-track');
+
+        const yearMin = document.getElementById('year-min');
+        const yearMax = document.getElementById('year-max');
+        const yearMinLabel = document.getElementById('year-min-label');
+        const yearMaxLabel = document.getElementById('year-max-label');
+        const yearRangeTrack = document.getElementById('year-range-track');
+
+        const resetBtn = document.getElementById('reset-filters');
+
+        function formatCurrency(val) {
+            return 'S$' + Number(val).toLocaleString();
+        }
+
+        function updateTrack(slider, track) {
+            const min = parseInt(slider.min);
+            const max = parseInt(slider.max);
+            const lo = parseInt(slider.parentElement.querySelector('input:first-of-type').value);
+            const hi = parseInt(slider.parentElement.querySelector('input:last-of-type').value);
+            const range = max - min;
+            track.style.left = ((lo - min) / range) * 100 + '%';
+            track.style.width = ((hi - lo) / range) * 100 + '%';
+        }
+
+        function applyFilters() {
+            const makeVal = makeSelect.value;
+            const modelVal = modelSelect.value;
+            const minPrice = parseInt(priceMin.value);
+            const maxPrice = parseInt(priceMax.value);
+            const minYear = parseInt(yearMin.value);
+            const maxYear = parseInt(yearMax.value);
+
+            priceMinLabel.textContent = formatCurrency(minPrice);
+            priceMaxLabel.textContent = formatCurrency(maxPrice);
+            yearMinLabel.textContent = minYear;
+            yearMaxLabel.textContent = maxYear;
+            updateTrack(priceMin, priceRangeTrack);
+            updateTrack(yearMin, yearRangeTrack);
+
+            const cards = grid.querySelectorAll('.vehicle-card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const cardPrice = parseInt(card.dataset.price);
+                const cardYear = parseInt(card.dataset.year);
+                const matchesMake = makeVal === 'all' || card.dataset.make === makeVal;
+                const matchesModel = modelVal === 'all' || card.dataset.model === modelVal;
+                const matchesPrice = cardPrice >= minPrice && cardPrice <= maxPrice;
+                const matchesYear = cardYear >= minYear && cardYear <= maxYear;
+                const match = matchesMake && matchesModel && matchesPrice && matchesYear;
+
+                card.style.display = match ? '' : 'none';
+                if (match) visibleCount++;
+            });
+
+            emptyState.classList.toggle('hidden', visibleCount !== 0);
+            resultCount.textContent = visibleCount + (visibleCount === 1 ? ' Vehicle Available' : ' Vehicles Available');
+        }
+
+        function applySorting() {
+            const sortVal = sortSelect.value;
+            const cards = Array.from(grid.querySelectorAll('.vehicle-card'));
+
+            cards.sort((a, b) => {
+                switch (sortVal) {
+                    case 'name-asc':
+                        return a.dataset.name.localeCompare(b.dataset.name);
+                    case 'name-desc':
+                        return b.dataset.name.localeCompare(a.dataset.name);
+                    case 'price-asc':
+                        return parseInt(a.dataset.price) - parseInt(b.dataset.price);
+                    case 'price-desc':
+                        return parseInt(b.dataset.price) - parseInt(a.dataset.price);
+                    case 'year-asc':
+                        return parseInt(a.dataset.year) - parseInt(b.dataset.year);
+                    case 'year-desc':
+                        return parseInt(b.dataset.year) - parseInt(a.dataset.year);
+                    default:
+                        return parseInt(a.dataset.order) - parseInt(b.dataset.order);
+                }
+            });
+
+            cards.forEach(card => grid.appendChild(card));
+        }
+
+        function clampSlider(lo, hi) {
+            lo.addEventListener('input', () => {
+                if (parseInt(lo.value) > parseInt(hi.value)) lo.value = hi.value;
+                applyFilters();
+            });
+            hi.addEventListener('input', () => {
+                if (parseInt(hi.value) < parseInt(lo.value)) hi.value = lo.value;
+                applyFilters();
+            });
+        }
+
+        clampSlider(priceMin, priceMax);
+        clampSlider(yearMin, yearMax);
+
+        [makeSelect, modelSelect].forEach(s => s.addEventListener('change', applyFilters));
+
+        sortSelect.addEventListener('change', () => {
+            applySorting();
+            applyFilters();
+        });
+
+        resetBtn.addEventListener('click', () => {
+            makeSelect.value = 'all';
+            modelSelect.value = 'all';
+            sortSelect.value = 'default';
+            priceMin.value = priceMin.min;
+            priceMax.value = priceMax.max;
+            yearMin.value = yearMin.min;
+            yearMax.value = yearMax.max;
+            applySorting();
+            applyFilters();
+        });
+
+        updateTrack(priceMin, priceRangeTrack);
+        updateTrack(yearMin, yearRangeTrack);
+    })();
+</script>
+
+{% endblock %}

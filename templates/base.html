@@ -1,0 +1,128 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<!-- Main Wrapper with Global Font (e.g., Playfair Display & Inter) -->
+
+<body>
+    <div class="bg-white text-[#2D2D2D] font-sans antialiased">
+
+        <!-- 1. NAVIGATION BAR -->
+        <nav
+            class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 px-8 py-4 flex items-center justify-between">
+
+            <!-- UPDATED CENTERED & SCALED LOGO -->
+            <a href="/" class="flex flex-col items-center justify-center group mx-auto lg:mx-0">
+                <!-- Main Title -->
+                <span
+                    class="text-xl font-serif font-light tracking-widest text-[#2D2D2D] leading-none uppercase transition-colors group-hover:text-black">
+                    Classic Car
+                </span>
+                <!-- Subtitle / Location (Centered, larger font size, high letter spacing) -->
+                <span
+                    class="text-[11px] font-sans font-bold tracking-[0.4em] text-[#D4AF37] uppercase leading-none mt-2 mr-[-0.4em]">
+                    Singapore
+                </span>
+            </a>
+
+            <!-- Nav Links -->
+            <div class="hidden lg:flex space-x-8 text-xs font-semibold tracking-wider uppercase">
+                <a href="/" class="hover:text-[#D4AF37] transition-colors">Home</a>
+                <a href="/buy" class="hover:text-[#D4AF37] transition-colors">Buy a Car</a>
+                <a href="/sell" class="hover:text-[#D4AF37] transition-colors">Sell a Car</a>
+                <a href="/services" class="hover:text-[#D4AF37] transition-colors">Import/Finance</a>
+                <a href="/toys" class="hover:text-[#D4AF37] transition-colors">TT Italia Kids Car</a>
+                <a href="/about" class="hover:text-[#D4AF37] transition-colors">About Us</a>
+                <a href="/contact" class="hover:text-[#D4AF37] transition-colors">Contact Us</a>
+            </div>
+
+            <!-- Right CTA -->
+            <!-- <a href="/contact"
+                class="border border-[#D4AF37] text-[#D4AF37] px-5 py-2 text-xs font-semibold tracking-wider uppercase hover:bg-[#D4AF37] hover:text-white transition-all duration-300">
+                Consign With Us
+            </a> -->
+        </nav>
+
+        {% block content %}{% endblock %}
+
+
+        <!-- 6. FOOTER -->
+        <footer class="bg-[#1A1A1A]">
+            <div class="max-w-7xl mx-auto px-8 py-14">
+
+                <div class="grid grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr] gap-10 items-start text-left">
+
+                    <!-- Brand Column (Updated to match Navbar Logo style but for Dark Theme) -->
+                    <div class="col-span-2 md:col-span-1 flex flex-col items-start justify-start">
+                        <a href="/" class="flex flex-col items-start group mb-4">
+                            <!-- Main Title -->
+                            <span
+                                class="text-xl font-serif font-light tracking-widest text-white leading-none uppercase transition-colors group-hover:text-gray-200">
+                                Classic Car
+                            </span>
+                            <!-- Subtitle / Location -->
+                            <span
+                                class="text-[11px] font-sans font-bold tracking-[0.4em] text-[#D4AF37] uppercase leading-none mt-2 mr-[-0.4em]">
+                                Singapore
+                            </span>
+                        </a>
+                        <p class="text-xs text-gray-500 leading-relaxed max-w-[220px]">
+                            Singapore's premier destination for timeless automotive masterpieces.
+                        </p>
+                    </div>
+
+                    <!-- Explore Column -->
+                    <div class="text-left">
+                        <p class="text-[11px] font-bold tracking-widest uppercase text-white mb-4">
+                            Explore
+                        </p>
+                        <a href="/"
+                            class="block text-xs text-gray-400 hover:text-[#D4AF37] transition-colors mb-3">Home</a>
+                        <a href="/buy" class="block text-xs text-gray-400 hover:text-[#D4AF37] transition-colors mb-3">Buy
+                            a Car</a>
+                        <a href="/sell" class="block text-xs text-gray-400 hover:text-[#D4AF37] transition-colors mb-3">Sell
+                            a Car</a>
+                        <a href="/services"
+                            class="block text-xs text-gray-400 hover:text-[#D4AF37] transition-colors mb-3">Import/Finance</a>
+                    </div>
+
+                    <!-- Company Column -->
+                    <div class="text-left">
+                        <p class="text-[11px] font-bold tracking-widest uppercase text-white mb-4">
+                            Company
+                        </p>
+                        <a href="/toys" class="block text-xs text-gray-400 hover:text-[#D4AF37] transition-colors mb-3">TT
+                            Italia Kids Car</a>
+                        <a href="/about"
+                            class="block text-xs text-gray-400 hover:text-[#D4AF37] transition-colors mb-3">About Us</a>
+                        <a href="/contact"
+                            class="block text-xs text-gray-400 hover:text-[#D4AF37] transition-colors mb-3">Contact
+                            Us</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Copyright Bar -->
+            <div class="border-t border-[#2e2e2e]">
+                <div
+                    class="max-w-7xl mx-auto px-8 py-5 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-2">
+                    <p class="text-[11px] text-gray-500">
+                        © 2026 Classic Car Singapore. All rights reserved.
+                    </p>
+                    <!-- Optional subtle extra link standard in luxury footprints -->
+                    <div class="flex gap-4 text-[11px] text-gray-600">
+                        <a href="#" class="hover:text-gray-400 transition-colors">Privacy Policy</a>
+                        <a href="#" class="hover:text-gray-400 transition-colors">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
