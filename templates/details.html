@@ -85,7 +85,7 @@
                 </h1>
                 <div class="w-12 h-px bg-[#D4AF37] mb-5"></div>
 
-                <p class="text-[#D4AF37] text-2xl font-semibold mb-8">{{ vehicle.price }}</p>
+                <p class="text-[#D4AF37] text-2xl font-semibold mb-8">{{ vehicle.price | currency }}</p>
 
                 <!-- Specs Grid -->
                 <div class="grid grid-cols-2 gap-y-5 gap-x-6 border-t border-b border-gray-100 py-7 mb-8">
@@ -115,7 +115,7 @@
                     </div>
                     <div>
                         <p class="text-[10px] font-bold tracking-widest uppercase text-gray-400 mb-1">Air Conditioning</p>
-                        <p class="text-sm text-[#2D2D2D]">{{ vehicle.air_conditioning }}</p>
+                        <p class="text-sm text-[#2D2D2D]">{{ "Yes" if vehicle.air_conditioning else "No" }}</p>
                     </div>
                     <div>
                         <p class="text-[10px] font-bold tracking-widest uppercase text-gray-400 mb-1">Licensing Scheme</p>
@@ -127,7 +127,9 @@
                     </div>
                     <div>
                         <p class="text-[10px] font-bold tracking-widest uppercase text-gray-400 mb-1">Contact</p>
-                        <p class="text-sm text-[#2D2D2D]">{{ vehicle.contact }}</p>
+                        {% for c in vehicle.contact %}
+                        <p class="text-sm text-[#2D2D2D]">{{ c.name }}{% if c.number %} — {{ c.number }}{% endif %}</p>
+                        {% endfor %}
                     </div>
                 </div>
 

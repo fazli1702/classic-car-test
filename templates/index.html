@@ -172,7 +172,7 @@
                         {{ vehicle.licensing_scheme }} · {{ vehicle.transmission }} · {{ vehicle.body_type }}
                     </p>
                     <div class="mt-auto pt-3 border-t border-[#f0e8cc] flex items-center justify-between">
-                        <span class="text-[#D4AF37] text-lg font-semibold">{{ vehicle.price }}</span>
+                        <span class="text-[#D4AF37] text-lg font-semibold">{{ vehicle.price | currency }}</span>
                         <span
                             class="border border-[#D4AF37] text-[#D4AF37] text-[10px] font-bold tracking-widest uppercase px-4 py-2 hover:bg-[#D4AF37] hover:text-white transition-all duration-300">
                             details →

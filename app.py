@@ -1,6 +1,5 @@
 import json
 import os
-import re
 from datetime import date
 from pathlib import Path
 from dotenv import load_dotenv
@@ -33,46 +32,38 @@ with open(BASE_DIR / 'data' / 'data.json', 'r', encoding='utf-8') as file:
 with open(BASE_DIR / 'data' / 'toy_car_details.json', 'r', encoding='utf-8') as file:
     TOY_CAR_DETAILS = json.load(file)
 
-for i, vehicle in enumerate(data):
-    folder = str(i + 1)
+for vehicle in data:
+    folder = str(vehicle['id'])
     img_dir = BASE_DIR / 'static' / 'images' / 'car_images' / folder
     files = sorted(
         [f for f in os.listdir(img_dir) if f.endswith('.jpg')],
         key=lambda f: int(os.path.splitext(f)[0])
     )
     image_paths = [f'/static/images/car_images/{folder}/{f}' for f in files]
-    vehicle['id'] = i + 1
     vehicle['src'] = image_paths[0] if image_paths else ''
     vehicle['images'] = image_paths
-    digits = re.sub(r'[^\d]', '', vehicle.get('price', '').split('.')[0])
-    vehicle['price_numeric'] = int(digits) if digits else 0
+    vehicle['price_numeric'] = vehicle.get('price', 0)
 
 VEHICLE_DETAILS = data
 
-
-def format_to_currency(amount: int) -> str:
-    """Converts an integer to a string in Singapore Dollar (S$) currency format."""
-    return f"S${amount:,}"
+app.jinja_env.filters['currency'] = lambda v: f"S${v:,}"
 
 
 def get_formatted_vehicles():
-    """Returns the vehicle list with prices formatted as Singapore Dollars."""
-    global VEHICLE_DETAILS
-    vehicle_details = VEHICLE_DETAILS
-    return vehicle_details
+    return VEHICLE_DETAILS
 
 
 
 @app.route('/')
 def home():
     # Homepage only teases a handful of vehicles
-    vehicle_details = get_formatted_vehicles()[:4]
+    vehicle_details = VEHICLE_DETAILS[:4]
     return render_template("index.html", vehicle_details=vehicle_details)
 
 
 @app.route('/buy')
 def buy():
-    vehicle_details = get_formatted_vehicles()
+    vehicle_details = VEHICLE_DETAILS
     makes = sorted({vehicle["make"] for vehicle in VEHICLE_DETAILS})
     models = sorted({vehicle["model"] for vehicle in VEHICLE_DETAILS})
     return render_template("buy.html", vehicle_details=vehicle_details, makes=makes, models=models, current_year=date.today().year)
