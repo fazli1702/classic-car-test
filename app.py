@@ -3,8 +3,12 @@ import os
 import re
 from datetime import date
 from pathlib import Path
+from dotenv import load_dotenv
 
-from flask import Flask, render_template, abort
+from flask import Flask, render_template, abort, request, flash, redirect, url_for
+from flask_mail import Mail, Message
+
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent
 
@@ -12,6 +16,16 @@ app = Flask(__name__,
             template_folder=str(BASE_DIR / 'templates'),
             static_folder=str(BASE_DIR / 'static'))
 
+app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
+# --- Flask-Mail Configuration ---
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'  # Replace with your provider
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_USERNAME'] = os.getenv("MAIL_USERNAME")  # Your email address
+app.config['MAIL_PASSWORD'] = os.getenv("MAIL_PASSWORD")    # Your App Password (not your login password)
+app.config['MAIL_DEFAULT_SENDER'] = os.getenv("MAIL_USERNAME")
+
+mail = Mail(app)
 
 with open(BASE_DIR / 'data' / 'data.json', 'r', encoding='utf-8') as file:
     data = json.load(file)
@@ -86,8 +100,27 @@ def services():
     return render_template("services.html")
 
 
-@app.route('/contact')
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
+    if request.method == 'POST':
+        name = request.form.get('name', '').strip()
+        email = request.form.get('email', '').strip()
+        subject = request.form.get('subject', '').strip()
+        message_body = request.form.get('message', '').strip()
+
+        msg = Message(
+            subject=f"Enquiry: {subject}",
+            recipients=[app.config['MAIL_USERNAME']],
+            reply_to=email,
+            body=f"Name: {name}\nEmail: {email}\n\n{message_body}"
+        )
+        try:
+            mail.send(msg)
+            flash('Your enquiry has been sent successfully. We will get back to you shortly.', 'success')
+        except Exception:
+            flash('Something went wrong. Please try again later.', 'error')
+        return redirect(url_for('contact'))
+
     return render_template("contact.html")
 
 
