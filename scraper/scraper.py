@@ -183,7 +183,7 @@ def main():
     #     "https://www.classiccarsingapore.com/cars-dynamic-collection/lotus-esprit",
     # ]
     
-    scrape_toy_car_details('scraper/toy_links.txt', 'toy_car_details.json')
+    scrape_toy_car_details('scraper/toy_links.txt', 'data/toy_car_details.json')
 
     # download_images('scraper/img_links.txt', 'images', start_folder=2)
     # all_images = scrape_toy_car_images('scraper/toy_links.txt')

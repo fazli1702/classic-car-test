@@ -13,20 +13,20 @@ app = Flask(__name__,
             static_folder=str(BASE_DIR / 'static'))
 
 
-with open(BASE_DIR / 'data.json', 'r', encoding='utf-8') as file:
+with open(BASE_DIR / 'data' / 'data.json', 'r', encoding='utf-8') as file:
     data = json.load(file)
 
-with open(BASE_DIR / 'toy_car_details.json', 'r', encoding='utf-8') as file:
+with open(BASE_DIR / 'data' / 'toy_car_details.json', 'r', encoding='utf-8') as file:
     TOY_CAR_DETAILS = json.load(file)
 
 for i, vehicle in enumerate(data):
     folder = str(i + 1)
-    img_dir = BASE_DIR / 'static' / 'images' / folder
+    img_dir = BASE_DIR / 'static' / 'images' / 'car_images' / folder
     files = sorted(
         [f for f in os.listdir(img_dir) if f.endswith('.jpg')],
         key=lambda f: int(os.path.splitext(f)[0])
     )
-    image_paths = [f'/static/images/{folder}/{f}' for f in files]
+    image_paths = [f'/static/images/car_images/{folder}/{f}' for f in files]
     vehicle['id'] = i + 1
     vehicle['src'] = image_paths[0] if image_paths else ''
     vehicle['images'] = image_paths
@@ -43,10 +43,6 @@ def format_to_currency(amount: int) -> str:
 
 def get_formatted_vehicles():
     """Returns the vehicle list with prices formatted as Singapore Dollars."""
-    # return [
-    #     {**vehicle, "price": format_to_currency(vehicle["price"])}
-    #     for vehicle in VEHICLE_DETAILS
-    # ]
     global VEHICLE_DETAILS
     vehicle_details = VEHICLE_DETAILS
     return vehicle_details
