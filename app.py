@@ -1,4 +1,3 @@
-import json
 import os
 from datetime import date
 from pathlib import Path
@@ -6,6 +5,8 @@ from dotenv import load_dotenv
 
 from flask import Flask, render_template, abort, request, flash, redirect, url_for
 from flask_mail import Mail, Message
+
+from database.models import db, Vehicle, ToyCar
 
 load_dotenv()
 
@@ -16,63 +17,60 @@ app = Flask(__name__,
             static_folder=str(BASE_DIR / 'static'))
 
 app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
+
+MYSQL_PASSWORD = os.getenv("MYSQL_PASSWORD")
+app.config['SQLALCHEMY_DATABASE_URI'] = f"{os.getenv("MYSQL_URL")}"
+
 # --- Flask-Mail Configuration ---
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'  # Replace with your provider
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USE_SSL'] = True
-app.config['MAIL_USERNAME'] = os.getenv("MAIL_USERNAME")  # Your email address
-app.config['MAIL_PASSWORD'] = os.getenv("MAIL_PASSWORD")    # Your App Password (not your login password)
+app.config['MAIL_USERNAME'] = os.getenv("MAIL_USERNAME")
+app.config['MAIL_PASSWORD'] = os.getenv("MAIL_PASSWORD")
 app.config['MAIL_DEFAULT_SENDER'] = os.getenv("MAIL_USERNAME")
 
+db.init_app(app)
 mail = Mail(app)
 
-with open(BASE_DIR / 'data' / 'data.json', 'r', encoding='utf-8') as file:
-    data = json.load(file)
+app.jinja_env.filters['currency'] = lambda v: f"S${v:,}"
 
-with open(BASE_DIR / 'data' / 'toy_car_details.json', 'r', encoding='utf-8') as file:
-    TOY_CAR_DETAILS = json.load(file)
-
-for vehicle in data:
-    folder = str(vehicle['id'])
+def enrich_vehicle(vehicle):
+    folder = str(vehicle.id)
     img_dir = BASE_DIR / 'static' / 'images' / 'car_images' / folder
     files = sorted(
         [f for f in os.listdir(img_dir) if f.endswith('.jpg')],
         key=lambda f: int(os.path.splitext(f)[0])
     )
     image_paths = [f'/static/images/car_images/{folder}/{f}' for f in files]
-    vehicle['src'] = image_paths[0] if image_paths else ''
-    vehicle['images'] = image_paths
-    vehicle['price_numeric'] = vehicle.get('price', 0)
-
-VEHICLE_DETAILS = data
-
-app.jinja_env.filters['currency'] = lambda v: f"S${v:,}"
-
-
-def get_formatted_vehicles():
-    return VEHICLE_DETAILS
-
+    vehicle.src = image_paths[0] if image_paths else ''
+    vehicle.images = image_paths
+    vehicle.price_numeric = vehicle.price
+    vehicle.contact = vehicle.contacts
+    return vehicle
 
 
 @app.route('/')
 def home():
-    # Homepage only teases a handful of vehicles
-    vehicle_details = VEHICLE_DETAILS[:4]
+    vehicles = Vehicle.query.limit(4).all()
+    vehicle_details = [enrich_vehicle(v) for v in vehicles]
     return render_template("index.html", vehicle_details=vehicle_details)
 
 
 @app.route('/buy')
 def buy():
-    vehicle_details = VEHICLE_DETAILS
-    makes = sorted({vehicle["make"] for vehicle in VEHICLE_DETAILS})
-    models = sorted({vehicle["model"] for vehicle in VEHICLE_DETAILS})
+    vehicles = Vehicle.query.all()
+    vehicle_details = [enrich_vehicle(v) for v in vehicles]
+    makes = sorted({v.make for v in vehicle_details})
+    models = sorted({v.model for v in vehicle_details})
     return render_template("buy.html", vehicle_details=vehicle_details, makes=makes, models=models, current_year=date.today().year)
+
 
 @app.route('/details/<int:vehicle_id>')
 def details(vehicle_id):
-    vehicle = next((v for v in VEHICLE_DETAILS if v["id"] == vehicle_id), None)
+    vehicle = db.session.get(Vehicle, vehicle_id)
     if vehicle is None:
         abort(404)
+    enrich_vehicle(vehicle)
     return render_template("details.html", vehicle=vehicle)
 
 
@@ -83,7 +81,8 @@ def sell():
 
 @app.route('/toys')
 def toys():
-    return render_template("toys.html", toy_cars=TOY_CAR_DETAILS)
+    toy_cars = ToyCar.query.all()
+    return render_template("toys.html", toy_cars=toy_cars)
 
 
 @app.route('/services')
